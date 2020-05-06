@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  flask:
+    container_name: flask-container-dev
+    build: ./services/backend
+    command: python manage.py run -h 0.0.0.0
+    volumes:
+      - ./services/backend/:/usr/src/app/
+    ports:
+      - 5000:5000
+    env_file:
+      - ./.env.dev
+  db:
+    container_name: db-container-dev
+    image: postgres:12-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=hello_flask
+      - POSTGRES_PASSWORD=hello_flask
+      - POSTGRES_DB=hello_flask_dev
+  vue:
+    container_name: vue-container-dev
+    build: ./services/frontend/
+    ports:
+      - "3000:80"
+
+volumes:
+  postgres_data:

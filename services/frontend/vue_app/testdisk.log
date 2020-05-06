@@ -1,0 +1,33 @@
+
+
+Fri Apr 10 16:37:20 2020
+Command line: TestDisk
+
+TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER <grenier@cgsecurity.org>
+http://www.cgsecurity.org
+OS: Linux, kernel 5.3.0-46-generic (#38~18.04.1-Ubuntu SMP Tue Mar 31 04:17:56 UTC 2020) x86_64
+Compiler: GCC 7.2
+ext2fs lib: 1.44.1, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.0
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Hard disk list
+Disk /dev/mapper/nvme0n1p5_crypt - 511 GB / 476 GiB - 998709248 sectors, sector size=512
+Disk /dev/mapper/ubuntu--vg-root - 510 GB / 475 GiB - 996630528 sectors, sector size=512
+Disk /dev/mapper/ubuntu--vg-swap_1 - 1023 MB / 976 MiB - 1998848 sectors, sector size=512
+Disk /dev/dm-0 - 511 GB / 476 GiB - 998709248 sectors, sector size=512
+Disk /dev/dm-1 - 510 GB / 475 GiB - 996630528 sectors, sector size=512
+Disk /dev/dm-2 - 1023 MB / 976 MiB - 1998848 sectors, sector size=512
+
+Partition table type (auto): None
+Disk /dev/mapper/nvme0n1p5_crypt - 511 GB / 476 GiB
+Partition table type: None
+
+Interface Advanced
+
+LVM2 magic value at 0/0/1
+part_size 998709248
+
+LVM2 magic value at 0/0/1
+   P Linux LVM2                     0  998709247  998709248
+     LVM2, 511 GB / 476 GiB
+SIGHUP detected! TestDisk has been killed.
