@@ -1,0 +1,14 @@
+#Python
+venv/
+__pycache__/
+build/
+dist/
+wheels/
+
+#Vuejs
+node_modules/
+/dist/
+
+#Editor directories and files
+.idea
+.vscode
