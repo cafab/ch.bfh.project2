@@ -76,6 +76,7 @@ export const useAuth0 = ({
 
       /** Returns the access token. If the token is invalid or missing, a new one is retrieved */
       getTokenSilently(o) {
+        console.log(this.auth0Client.getTokenSilently(o))
         return this.auth0Client.getTokenSilently(o);
       },
 
