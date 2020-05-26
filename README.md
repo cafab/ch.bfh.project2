@@ -42,7 +42,9 @@ Prerequisites: Make sure you have [**Docker**](https://docs.docker.com/get-docke
 
 3. &nbsp;You may notice that the navigation bar element "Dashboard" appeared at the top, meaning we are authenticated and can access our personal dashboard.
 
-4. &nbsp;Now when you click on "Dashboard", the access token along with the extracted email address from the id token will for the first time be sent to our Flask backend.  
+4. &nbsp;Now when you click on "Dashboard", the access token along with the extracted email address from the id token will for the first time be sent to our Flask backend.
+
+5. &nbsp;Still connected to the database (see 1.), run &nbsp;`\dt`. Now the "users" table has been created. If you enter the command &nbsp;`select * from users;`&nbsp; you will see an entry of the &nbsp;`jodod47804@gilfun.com`&nbsp; with the user_id extracted from the access token "sub" claim.
 
 The backend will then validate our access token by checking the token signature against the corresponding public key from Auth0. When the validation succeeded, the subject information from the access token gets extracted, which uniquely identifies the user. This user id will then be stored in the postgres database along with the email address already extraced from the id token in the Vue client app. Id tokens shall never be used to get access to an API. Id tokens are the OpenId Connect part in the authentication flow and are meant to leverage user experience by showing user specific data on the client side like first and last name of the user for example.
 
