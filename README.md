@@ -1,24 +1,32 @@
-# Project 2
+# Project 2 - Technology-Study Auth0
 
 This Project is about figuring out a suitable authentication and authorization method for building a Bitcoin Trading Bot website, where users can sign up and safely store
-their exchange API keys.
+their exchange apy-keys.
 
 ## Technologies
 
 Following technologies have been used:
 
-- [**Flask**](https://palletsprojects.com/p/flask/) *as a REST-API resource server backend.*
-- [**Vue.js**](https://vuejs.org/) *as a SPA client frontend.*
+- [**Flask**](https://palletsprojects.com/p/flask/) *as a Python REST-API resource server backend.*
+- [**Vue.js**](https://vuejs.org/) *as a Javascript SPA client frontend.*
 - [**PostgreSQL**](https://www.postgresql.org/) *as a relational database for storing sensitive information about the user.*
-- [**Docker**](https://www.docker.com/) *to isolate and virtualize each application in a container.*
+- [**Docker**](https://www.docker.com/) *in order to isolate and virtualize each application component above in a container.*
 
-## Authentication and Authorization
+## How I did it
 
-To handle authentication and authorize users to access the project's resource server (Flask backend), this project makes use of [**Auth0**](https://auth0.com/) as an identity provider and authorization server. Auth0 uses the [**OAuth2**](https://tools.ietf.org/html/rfc6749) protocol for authorization and [**OpenID Connect**](https://openid.net/connect/) as an authentication layer on top of OAuth2.
+The requirements for the architecture of this project were given by my coach Kai Brünnler. The idea was to have a mechanism to authenticate a user through an identity provider and give him access to a resource server which handles authorized API requests. The main focus therefore was on the security aspect of the authentication and authorization process.
 
-## API Calls
+We chose [**Auth0**](https://auth0.com/) as a third-party identity provider and authorization server. Auth0 uses [**OpenID Connect (OIDC)**](https://openid.net/connect/) and [**OAuth 2.0**](https://tools.ietf.org/html/rfc6749) to authenticate users and get their authorization to access protected resources.
 
-When public clients (e.g., native and single-page applications) request Access Tokens, some additional security concerns are posed that are not mitigated by the Authorization Code Flow alone. Our Vue.js client cannot securely store the client secret because the entire source is available to the browser. Client secrets prove to an authentication server, that a client app is authorized to make requests on behalf of a user. Therefore this project fits best for the [**Authorization Code Flow with Proof Key for Code Exchange (PKCE)**](https://tools.ietf.org/html/rfc7636), where our Vue.js client exchanges a challenge with the Auth0 authorization server in order to get a valid access and id token. Luckily, Auth0 provides us with a suitable [**SDK**](https://auth0.com/docs/libraries/auth0-spa-js) for this matter.
+Additionally, we decided to use the lightweight and in popularity gaining Javascript framework Vue.js as the frontend client and likewise a lightweight backend web framework for which we chose Flask.
+
+At the start of the project I had to familiarize with these technologies so I did following tutorials both provided by Auth0:
+
+- [**Vue.js with User Login**](https://auth0.com/blog/beginner-vuejs-tutorial-with-user-login/)
+
+- [**Python API: Authorization**](https://auth0.com/docs/quickstart/backend/python/01-authorization)
+
+Furthermore I had to freshen up the various authentication and authorization flows for the respective applications and APIs. I found out that in order to ensure a public client like the Vue.js app is doesn't leak the client secret, I have to pick the Authorization Code Flow with Proof Key for Code Exchange (PKCE). Check out my presentation [**here**](docs/Auth_Code_Flow_with_PKCE.odp) of why we have to use this kind of flow and what attacks would be possible if we wouldn't. Luckily, Auth0 provides us with a suitable [**SDK**](https://auth0.com/docs/libraries/auth0-spa-js) for this flow.
 
 ## Installation guide
 
@@ -45,7 +53,3 @@ Prerequisites: Make sure you have [**Docker**](https://docs.docker.com/get-docke
 4. &nbsp;Now when you click on "Dashboard", the access token along with the extracted email address from the id token will for the first time be sent to our Flask backend.
 
 5. &nbsp;Still connected to the database (see 1.), run &nbsp;`\dt`. Now the "users" table has been created. If you enter the command &nbsp;`select * from users;`&nbsp; you will see an entry of the &nbsp;`jodod47804@gilfun.com`&nbsp; with the user_id extracted from the access token "sub" claim.
-
-The backend will then validate our access token by checking the token signature against the corresponding public key from Auth0. When the validation succeeded, the subject information from the access token gets extracted, which uniquely identifies the user. This user id will then be stored in the postgres database along with the email address already extraced from the id token in the Vue client app. Id tokens shall never be used to get access to an API. Id tokens are the OpenId Connect part in the authentication flow and are meant to leverage user experience by showing user specific data on the client side like first and last name of the user for example.
-
-This app isn't complete yet, because the focus of this project was on the authentication and authorization part of users to make API calls to our backend so they can store sensitive data like an exchange api-key in our own database without having to outsource this information to Auth0, which would also have been possible but would be out of our control of how they treat this data.
