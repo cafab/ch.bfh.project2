@@ -1,7 +1,7 @@
 # Project 2 - Technology-Study Auth0
 
 This Project is about figuring out a suitable authentication and authorization method for building a Bitcoin Trading Bot website, where users can sign up and safely store
-their exchange apy-keys.
+their exchange api-keys.
 
 ## Technologies
 
