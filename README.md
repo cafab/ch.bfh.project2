@@ -20,13 +20,13 @@ We chose [**Auth0**](https://auth0.com/) as a third-party identity provider and 
 
 Additionally, we decided to use the lightweight and in popularity gaining Javascript framework Vue.js as the frontend client and likewise a lightweight backend web framework for which we chose Flask.
 
-At the start of the project I had to familiarize with these technologies so I did following tutorials both provided by Auth0:
+At the start of the project I had to familiarize with these technologies so I did the following tutorials both provided by Auth0:
 
 - [**Vue.js with User Login**](https://auth0.com/blog/beginner-vuejs-tutorial-with-user-login/)
 
 - [**Python API: Authorization**](https://auth0.com/docs/quickstart/backend/python/01-authorization)
 
-Furthermore I had to freshen up the various authentication and authorization flows for the respective applications and APIs. I found out that in order to ensure a public client like the Vue.js app is doesn't leak the client secret, I have to pick the Authorization Code Flow with Proof Key for Code Exchange (PKCE). Check out my presentation [**here**](docs/Auth_Code_Flow_with_PKCE.odp) of why we have to use this kind of flow and what attacks would be possible if we wouldn't. Luckily, Auth0 provides us with a suitable [**SDK**](https://auth0.com/docs/libraries/auth0-spa-js) for this flow.
+Furthermore I had to freshen up the various authentication and authorization flows for the respective applications and APIs. I found out that in order to ensure a public client like the Vue.js app doesn't leak the client secret, I have to pick the Authorization Code Flow with Proof Key for Code Exchange (PKCE). Check out my presentation [**here**](docs/Auth_Code_Flow_with_PKCE.odp) of why we have to use this kind of flow and what attacks would be possible if we wouldn't. Luckily, Auth0 provides us with a suitable [**SDK**](https://auth0.com/docs/libraries/auth0-spa-js) for this flow.
 
 ## Installation guide
 
